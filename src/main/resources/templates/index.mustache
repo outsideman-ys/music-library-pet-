@@ -1,0 +1,100 @@
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .song-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .song-cell {
+        text-align: center;
+        padding: 10px;
+        margin-right: 10px;
+        margin-left: 10px;
+        background-color: white;
+    }
+
+    body {
+        background-color: gray;
+    }
+
+    .input-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding-left: 35%;
+        padding-right: 35%;
+    }
+
+    @font-face {
+      font-family: Onest;
+      src: url(fonts/Onest-Regular.ttf);
+    }
+
+
+
+</style>
+
+<body>
+
+{{>header}}
+
+<main>
+
+    <h1 style="text-align:center; padding-top: 80px">Bobworld</h1>
+
+    <h2 style="text-align:center">Check out new songs</h2>
+
+    <div class="song-container">
+        {{#dateSongs}}
+        <div class="song-cell">
+            <a href="/songs/{{id}}">
+            <img src="{{imagePath}}" alt="{{albumName}} album"
+                 width="200px" height="200px"><br>
+            <b style="font-size:large">{{songName}}</b><br>
+            <u>{{bandName}}</u>
+            </a>
+        </div>
+        {{/dateSongs}}
+    </div>
+
+    <h2 style="text-align:center">Check out popular songs</h2>
+
+    <div class="song-container" style="padding-top: 10px;">
+        {{#ratingSongs}}
+            <div class="song-cell">
+                <a href="/songs/{{id}}">
+                <img src="{{imagePath}}" alt="{{albumName}} album"
+                     width="200px" height="200px"><br>
+                <b style="font-size:large">{{songName}}</b><br>
+                <u>{{bandName}}</u>
+                </a>
+            </div>
+        {{/ratingSongs}}
+    </div>
+    <br><br><br>
+    <div class="input-container">
+        <h2 style="text-align:center">Want to add your song?<br>Fill the form below!</h2>
+        <form action="/all-songs" method="post" enctype="multipart/form-data">
+            <label for="song_name">Song name:</label>
+            <input type="text" id="song_name" name="songName"><br>
+            <label for="album_name">Album name:</label>
+            <input type="text" id="album_name" name="albumName"><br>
+            <label for="band_name">Band name:</label>
+            <input type="text" id="band_name" name="bandName"><br>
+            <label for="file_upload">Guitar pro file:</label>
+            <input type="file" id="fileUpload" name="guitarProFile" required><br>
+            <input type="submit"><br><br><br>
+        </form>
+    </div>
+
+</main>
+
+{{>footer}}
+
+</body>

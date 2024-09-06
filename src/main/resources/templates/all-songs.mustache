@@ -1,0 +1,113 @@
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: gray;
+    }
+
+    .song-container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        justify-content: center;
+        padding-right: 10%;
+        padding-left: 10%;
+        padding-bottom: 5%;
+    }
+
+    .song-cell {
+        text-align: center;
+        margin: 10px;
+        padding: 10px;
+        background-color: white;
+    }
+
+    main {
+        margin-top: 40px;
+    }
+
+    .pageable-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+</style>
+
+<script>
+    function checkInput() {
+        const textInput = document.getElementById("textInput");
+        const submitButton = document.getElementById("submitButton");
+
+        if (textInput.value.trim() === "") {
+            submitButton.disabled = true;
+        } else {
+            submitButton.disabled = false;
+        }
+    }
+</script>
+
+<body>
+
+    {{>header}}
+    <main>
+        <div style="padding-top: 10px;">
+            <div class="search-control" style="text-align:center">
+                <form action="/all-songs" method="get">
+                    <label for="search">Search: </label>
+                    <input type="text" value="{{search}}" name="search" onclick="checkInput()" required>
+                    <input type="submit" value="Search"><br>
+                    <label for="sort-for">Sort: </label>
+                    <select id="sort-for" name="sortField">
+                        {{#sortFieldOptions}}
+                            <option value="{{value}}" {{#selected}}selected{{/selected}}>{{label}}</option>
+                        {{/sortFieldOptions}}
+                    </select>
+                    <label for="sort-how">How to sort: </label>
+                    <select id="sort-how" name="sortOrder">
+                        {{#sortOrderOptions}}
+                            <option value="{{value}}" {{#selected}}selected{{/selected}}>{{label}}</option>
+                        {{/sortOrderOptions}}
+                    </select>
+                    <input type="submit" value="Sort">
+                </form>
+            </div>
+            <div class="song-container">
+                {{#songs}}
+                <a href="/songs/{{id}}"> <div class="song-cell">
+                    <img src="{{imagePath}}" alt="{{albumName}} album"
+                         width="200px" height="200px"><br>
+                    <b style="font-size:large">{{songName}}</b><br>
+                    <u>{{bandName}}</u>
+                </div> </a>
+                {{/songs}}
+            </div>
+        </div>
+
+        <div class="pageable-container">
+            {{#showFirst}}
+                <a href="/all-songs?search={{search}}">First</a>
+            {{/showFirst}}
+
+            {{#showPrevious}}
+                <a href="?search={{search}}&page={{previousPage}}&sortField={{sortField}}&sortOrder={{sortOrder}}"> Previous</a>
+            {{/showPrevious}}
+
+            Page {{currentPage}} of {{totalPages}}
+
+            {{#showNext}}
+                <a href="?search={{search}}&page={{nextPage}}&sortField={{sortField}}&sortOrder={{sortOrder}}"> Next</a>
+            {{/showNext}}
+        </div>
+
+    </main>
+    {{>footer}}
+
+</body>

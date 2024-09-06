@@ -1,0 +1,83 @@
+<style>
+
+    @font-face {
+      font-family: Onest;
+      src: url(fonts/Onest-Regular.ttf);
+    }
+
+    header {
+        font-family: Onest, 'Onest-Regular';
+        font-size: 20px;
+        font-weight: bolder;
+    }
+
+    .forehead {
+        position: fixed;
+        justify-content: space-around;
+        display: flex;
+        align-items: center;
+        z-index: 1000;
+        box-sizing: border-box;
+        background-color: rgba(107, 195, 242, 0);
+        transition: transform 0.5s ease, background-color 0.5s ease;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    .forehead.hidden {
+        transform: translateY(-100%);
+    }
+
+    .forehead.scrolled {
+        background-color: rgba(107, 195, 242, 1);
+    }
+
+    .left-container, .right-container {
+        flex: 1;
+    }
+
+    .right-container {
+        display: flex;
+        justify-content: right;
+    }
+
+    .center-container {
+        flex: 2;
+        display: flex;
+        justify-content: center;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    a:hover {
+        color: red;
+    }
+
+</style>
+
+
+<header class="forehead">
+
+    <div class="left-container">
+        <a href="/"><img src="/images/logo.png" alt="logo" width="125px" style="margin-left: 50px;"/></a>
+    </div>
+    <div class="center-container">
+        <ul style="list-style: none; display: flex;">
+            <li style="margin-right: 15px;"><a href="/">Home</a></li>
+            <li style="margin-right: 15px;"><a href="/all-songs">Songs</a></li>
+            <li style="margin-right: 15px;">About</li>
+            <li>Contact</li>
+        </ul>
+    </div>
+    <div class="right-container">
+        <img src="/images/account.png" alt="account" width="40px" style="margin-right: 50px;"/>
+    </div>
+
+</header>
+
+<script src="/js/header_script.js"></script>
+
