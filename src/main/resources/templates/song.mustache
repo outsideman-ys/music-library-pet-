@@ -16,18 +16,18 @@
 <body>
 
     {{>header}}
+    <script src="/js/getter_lyrics.js"></script>
 
     <main style="padding-top: 50px">
         {{#song}}
-            <p>Song Name: {{songName}}</p>
-            <p>Band Name: {{bandName}}</p>
+            <p id="song_name">Song Name: {{songName}}</p>
+            <p id="band_name">Band Name: {{bandName}}</p>
+            <p id="rating">Rating: {{rating}}</p>
             <img src="/{{imagePath}}" alt="{{albumName}} album" width="200px" height="200px">
             <a href="/{{guitarProPath}}" download="{{bandName}} - {{songName}}.gp5">Click here to download guitar pro file of song</a>
         {{/song}}
 
-        {{#lyricsAPI}}
-            <pre>{{lyricsAPI}}</pre>
-        {{/lyricsAPI}}
+        <pre id="lyrics"></pre>
 
         {{#videoId}}
             <h2>Watch the video:</h2>

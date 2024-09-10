@@ -31,6 +31,8 @@
 
     .pageable-container {
         display: flex;
+        flex-direction: column;
+        margin-bottom:20px;
         justify-content: center;
     }
 
@@ -41,19 +43,6 @@
 
 </style>
 
-<script>
-    function checkInput() {
-        const textInput = document.getElementById("textInput");
-        const submitButton = document.getElementById("submitButton");
-
-        if (textInput.value.trim() === "") {
-            submitButton.disabled = true;
-        } else {
-            submitButton.disabled = false;
-        }
-    }
-</script>
-
 <body>
 
     {{>header}}
@@ -62,7 +51,7 @@
             <div class="search-control" style="text-align:center">
                 <form action="/all-songs" method="get">
                     <label for="search">Search: </label>
-                    <input type="text" value="{{search}}" name="search" onclick="checkInput()" required>
+                    <input type="text" value="{{search}}" name="search">
                     <input type="submit" value="Search"><br>
                     <label for="sort-for">Sort: </label>
                     <select id="sort-for" name="sortField">
@@ -76,6 +65,9 @@
                             <option value="{{value}}" {{#selected}}selected{{/selected}}>{{label}}</option>
                         {{/sortOrderOptions}}
                     </select>
+                    {{#_csrf}}
+                    <input type="hidden" name="{{parameterName}}" value="{{token}}">
+                    {{/_csrf}}
                     <input type="submit" value="Sort">
                 </form>
             </div>
@@ -92,20 +84,27 @@
         </div>
 
         <div class="pageable-container">
-            {{#showFirst}}
-                <a href="/all-songs?search={{search}}">First</a>
-            {{/showFirst}}
 
-            {{#showPrevious}}
-                <a href="?search={{search}}&page={{previousPage}}&sortField={{sortField}}&sortOrder={{sortOrder}}"> Previous</a>
-            {{/showPrevious}}
+            <p align="center" style="font-size:250%">PAGE {{currentPage}} OF {{totalPages}}
 
-            Page {{currentPage}} of {{totalPages}}
-
-            {{#showNext}}
-                <a href="?search={{search}}&page={{nextPage}}&sortField={{sortField}}&sortOrder={{sortOrder}}"> Next</a>
-            {{/showNext}}
+            <table align="center">
+                <tr>
+                    <td width="60px"><a href="/all-songs?search={{search}}">
+                        <img src="/images/1.png"  width="50px" height="50px">
+                        </a></td>
+                    <td width="60px"><a href="?search={{search}}&page={{previousPage}}&sortField={{sortField}}&sortOrder={{sortOrder}}">
+                        <img src="/images/back.png"  width="50px" height="50px">
+                        </a></td>
+                    <td width="60px"><a href="?search=&amp;page=1&amp;sortField=songName&amp;sortOrder=asc">
+                        <img src="/images/frwd.png"  width="50px" height="50px">
+                    </a></td>
+                    <td width="60px"></td>
+                </tr>
+            </table>
+            </p>
         </div>
+
+
 
     </main>
     {{>footer}}

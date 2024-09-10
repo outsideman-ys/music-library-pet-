@@ -21,6 +21,10 @@ public class Song {
     private String albumName;
     @Column(name="rating")
     private int rating;
+
+    @Column(name="username")
+    private String username;
+
     @Column(name="img_path")
     private String imagePath;
     @CreationTimestamp
@@ -29,6 +33,14 @@ public class Song {
 
     @Column(name="gtrpro_path")
     private String guitarProPath;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getGuitarProPath() {
         return guitarProPath;

@@ -3,6 +3,7 @@ package com.dnd.game.services;
 import com.dnd.game.entities.Song;
 import com.dnd.game.repositories.SongRepo;
 import org.springframework.data.domain.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -23,6 +24,17 @@ public class SongService {
     public Page<Song> getAllSongs(int page, int size, Sort sort) {
         Pageable pageable = PageRequest.of(page, size, sort);
         return songRepo.findAll(pageable);
+    }
+
+    public List<Song> getSongsFromUser(String username) {
+        return songRepo.findByUsername(username);
+    }
+
+    public void delete(Long id) {
+        songRepo.findById(id).map(songEntity -> {
+            songRepo.delete(songEntity);
+            return true;
+        }).orElseThrow(() -> new RuntimeException("No song at " + id));
     }
 
     public Song findById(Long id) {
@@ -58,11 +70,12 @@ public class SongService {
         return songRepo.findTop5ByOrderByCreatedDateDesc();
     }
 
-    public Song saveSong(Song song) {
+    public Song saveSong(Song song, String username) {
         int rating = random.nextInt(98);
         song.setRating(rating);
         song.setImagePath(getTheImagePath(song.getAlbumName()));
         song.setGuitarProPath(getGuitarProPath(song.getBandName(), song.getSongName()));
+        song.setUsername(username);
         return songRepo.save(song);
     }
 

@@ -1,0 +1,78 @@
+<style>
+
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    main {
+        flex: 1;
+    }
+
+    .input-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding-left: 35%;
+        padding-right: 35%;
+    }
+
+</style>
+
+<body>
+
+{{>header}}
+
+    <main>
+        <h1 style="text-align:center; padding-top: 40px">HELLO {{user}}</h1>
+
+        {{authority}}
+
+        <div class="input-container">
+            <h2 style="text-align:center">Want to add your song?<br>Fill the form below!</h2>
+            <form action="/all-songs" method="post" enctype="multipart/form-data">
+                <label for="song_name">Song name:</label>
+                <input type="text" id="song_name" name="songName"><br>
+                <label for="album_name">Album name:</label>
+                <input type="text" id="album_name" name="albumName"><br>
+                <label for="band_name">Band name:</label>
+                <input type="text" id="band_name" name="bandName"><br>
+                <label for="fileUpload">Guitar pro file:</label>
+                <input type="file" id="fileUpload" name="guitarProFile" required><br>
+                {{#_csrf}}
+                <input type="hidden" name="{{parameterName}}" value="{{token}}">
+                {{/_csrf}}
+                <input type="submit"><br><br><br>
+            </form>
+        </div>
+        <div class="delete-container">
+        {{#songs}}
+            <form action="/delete-song/{{id}}" method="post">
+                ID:{{id}} {{songName}} - {{bandName}} ({{albumName}})
+                {{#_csrf}}
+                    <input type="hidden" name="{{parameterName}}" value="{{token}}">
+                {{/_csrf}}
+                <button type="submit" > Delete </button>
+            </form>
+        {{/songs}}
+        </div>
+
+        <div class="logout-container">
+            <form action="/logout" method="post">
+                {{#_csrf}}
+                    <input type="hidden" name="{{parameterName}}" value="{{token}}">
+                {{/_csrf}}
+                <button type="submit">Logout</button>
+        </div>
+
+    </main>
+
+{{>footer}}
+
+</body>

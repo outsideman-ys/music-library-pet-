@@ -3,8 +3,10 @@ package com.dnd.game.controllers;
 import com.dnd.game.entities.Song;
 import com.dnd.game.other.Option;
 import com.dnd.game.services.SongService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +30,7 @@ public class AllSongsController {
                            @RequestParam(value="sortField", required = false, defaultValue="songName") String sortField,
                            @RequestParam(value="sortOrder", required = false, defaultValue="asc") String sortOrder,
                            @RequestParam(value = "search", required = false, defaultValue = "") String search,
-                           Model model) {
+                           Model model, HttpServletRequest request) {
 
         Sort sort = Sort.by(Sort.Direction.fromString(sortOrder), sortField);
         Page<Song> songs;
@@ -41,6 +43,9 @@ public class AllSongsController {
         model.addAttribute("search", search);
 
         int totalPages = songs.getTotalPages();
+
+        CsrfToken csrfToken = (CsrfToken)  request.getAttribute(CsrfToken.class.getName());
+        model.addAttribute("_csrf", csrfToken);
 
         //ебанутый костыль какой-то, переписать надо
 

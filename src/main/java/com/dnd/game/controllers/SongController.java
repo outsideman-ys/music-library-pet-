@@ -28,12 +28,10 @@ public class SongController {
     public String getSongById(@PathVariable("id") Long id, Model model) {
         try {
             Song song = songService.findById(id);
-            String lyrics = musicxmatchService.getLyrics(song, "7626d5456bfefd2bb41da526b4f7e963").block();
             String videoId = youtubeService.getVideoYouTube("" + song.getSongName() +
                     " " + song.getBandName() + " lyrics", "AIzaSyBjgbVCoXM00dZytHXVrYnpnkEJTdpqmS4").block();
 
             model.addAttribute("song", song);
-            model.addAttribute("lyricsAPI", lyrics);
             model.addAttribute("videoId", videoId);
         } catch (Exception e) {
             e.printStackTrace(); // вывод в консоль для диагностики

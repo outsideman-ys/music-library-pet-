@@ -1,0 +1,11 @@
+<a href="/oauth2/authorization/google">Login with Google</a>
+<form action="/login" method="post">
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    {{#_csrf}}
+        <input type="hidden" name="{{parameterName}}" value="{{token}}">
+    {{/_csrf}}
+    <button type="submit">Login</button>
+
+    <p>Don't have account?<a href="/register"> Register now! </a></p>
+</form>

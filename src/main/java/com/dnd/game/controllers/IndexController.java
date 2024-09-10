@@ -3,6 +3,7 @@ package com.dnd.game.controllers;
 import com.dnd.game.entities.Song;
 import com.dnd.game.services.SongService;
 import org.springframework.boot.Banner;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +44,8 @@ public class IndexController {
     }
 
     @PostMapping("/all-songs")
-    public String createSong(@ModelAttribute Song song, @RequestParam("guitarProFile")MultipartFile file) {
+    public String createSong(@ModelAttribute Song song, @RequestParam("guitarProFile")MultipartFile file,
+                             Authentication authentication) {
         try {
             Path targetLocation = this.fileLocation.resolve(file.getOriginalFilename());
 
@@ -51,7 +53,7 @@ public class IndexController {
         } catch (IOException e) {
             throw new RuntimeException("Cant store file");
         }
-        songService.saveSong(song);
+        songService.saveSong(song, authentication.getName());
 
         return "redirect:/";
     }
