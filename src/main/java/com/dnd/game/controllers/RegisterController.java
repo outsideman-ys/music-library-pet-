@@ -2,7 +2,6 @@ package com.dnd.game.controllers;
 
 import com.dnd.game.entities.UserAccount;
 import com.dnd.game.services.AccountService;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
