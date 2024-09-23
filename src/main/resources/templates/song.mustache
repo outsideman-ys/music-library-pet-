@@ -10,7 +10,77 @@
         word-wrap: break-word;
     }
 
+    .difficulty {
+        direction: rtl;
+        display: flex;
+        justify-content: center;
+    }
+
+    .difficulty input {
+        display: none;
+    }
+
+    .difficulty label {
+        font-size: 4em;
+        color: #ccc;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    .difficulty label:hover,
+    .difficulty label:hover ~ label {
+        color: gold;
+    }
+
+    .difficulty input:checked ~ label {
+        color: gold;
+    }
+
+    .difficulty label:before {
+        content: '★';
+        transition: transform 0.3s ease;
+    }
+
+    .difficulty input:checked ~ label:before {
+        transform: scale(1.2);
+    }
+
+    #difficulty-hint {
+        font-size: 1.2em;
+        color: #333;
+        height: 20px;
+        transition: opacity 0.2s;
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 20px;
+    }
+
+    #submit-difficulty {
+        display:flex;
+        justify-content:center;
+    }
+
 </style>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ratingLabels = document.querySelectorAll('.difficulty label');
+        const ratingHint = document.getElementById('difficulty-hint');
+        ratingLabels.forEach(label => {
+            label.addEventListener('mouseenter', (e) => {
+                const text = this.getAttribute('data-text');
+                ratingHint.textContent = text;
+                ratingHint.style.opacity = '1';
+            });
+            label.addEventListener('mouseleave', (e) => {
+                ratingHint.style.opacity = '0';
+            });
+        });
+    });
+</script>
+
 
 
 <body>
@@ -22,22 +92,45 @@
         {{#song}}
             <p id="song_name">Song Name: {{songName}}</p>
             <p id="band_name">Band Name: {{bandName}}</p>
-            <p id="rating">Rating: {{rating}}</p>
-            <img src="/{{imagePath}}" alt="{{albumName}} album" width="200px" height="200px">
-            <a href="/{{guitarProPath}}" download="{{bandName}} - {{songName}}.gp5">Click here to download guitar pro file of song</a>
-        {{/song}}
+            <p id="difficulty_name">Difficulty: {{difficulty}}</p>
+            <img src="/{{imagePath}}" alt="{{albumName}} album" onerror="this.onerror=null; this.src='/images/default-image.jpg';" width="200px" height="200px">
+            <a href="/{{guitarProPath}}" download>Click here to download guitar pro file of song</a>
 
         <pre id="lyrics"></pre>
 
-        {{#videoId}}
             <h2>Watch the video:</h2>
-            <iframe width="800" height="600"
-                    src="https://www.youtube.com/embed/{{videoId}}"
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-            </iframe>
-        {{/videoId}}
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{youtubeId}}"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+        {{/song}}
+
+        <h2 style="text-align:center; padding-top: 1%;">RATE DIFFICULTY OF THIS SONG!</h2>
+
+        <form action="/songs/{{id}}" method="post">
+            <div class="difficulty" data-song-id="{{#song}}{{id}}{{/song}}">
+
+                <input type="radio" id="master" name="difficulty" value="5" />
+                <label for="master" title="Master"></label>
+
+                <input type="radio" id="expert" name="difficulty" value="4" />
+                <label for="expert" title="Expert"></label>
+
+                <input type="radio" id="pro" name="difficulty" value="3" />
+                <label for="pro" title="Pro"></label>
+
+                <input type="radio" id="intermediate" name="difficulty" value="2" />
+                <label for="intermediate" title="Intermediate"></label>
+
+                <input type="radio" id="beginner" name="difficulty" value="1" />
+                <label for="beginner" title="Beginner"></label>
+            </div>
+            <input type="submit" value="Rate" id="submit-difficulty">
+        </form>
+
+        <div id="difficulty-hint"></div>
+
 
     </main>
 

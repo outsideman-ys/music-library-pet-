@@ -12,8 +12,10 @@ import java.util.List;
 
 public interface SongRepo extends JpaRepository<Song, Long> {
 
-    List<Song> findTop5ByOrderByRatingDesc();
+    List<Song> findTop5ByOrderByDifficultyDesc();
     List<Song> findTop5ByOrderByCreatedDateDesc();
+
+    Song findBySongName(String songName);
 
     @PreAuthorize("#entity.username == authentication.name")
     @Override

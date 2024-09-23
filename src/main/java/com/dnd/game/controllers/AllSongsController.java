@@ -50,7 +50,7 @@ public class AllSongsController {
         //ебанутый костыль какой-то, переписать надо
 
         List<Option> sortFieldOptions = new ArrayList<>();
-        sortFieldOptions.add(new Option("rating", "Rating", sortField.equals("rating")));
+        sortFieldOptions.add(new Option("difficulty", "Difficulty", sortField.equals("difficulty")));
         sortFieldOptions.add(new Option("createdDate", "Date", sortField.equals("createdDate")));
         sortFieldOptions.add(new Option("songName", "Song", sortField.equals("songName")));
         sortFieldOptions.add(new Option("bandName", "Band", sortField.equals("bandName")));

@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class UserAccount {
@@ -18,12 +19,17 @@ public class UserAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToMany(mappedBy = "user")
+    private Set<DifficultyUsers> difficultyUsersSet;
+
     @Column(name="username")
     private String username;
     @Column(name="password")
     private String password;
     @Column(name="email")
     private String email;
+    @Column(name="image_path")
+    private String imagePath;
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<GrantedAuthority> authorities = new ArrayList<>();
@@ -31,11 +37,20 @@ public class UserAccount {
     public UserAccount() {
     }
 
-    public UserAccount(String username, String password, String email, SimpleGrantedAuthority authority) {
+    public UserAccount(String username, String password, String email, String imagePath, SimpleGrantedAuthority authority) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.imagePath = imagePath;
         this.authorities.add(authority);
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public UserDetails asUser() {
@@ -46,6 +61,14 @@ public class UserAccount {
                 .password(passwordEncoder.encode(getPassword()))
                 .authorities(getAuthorities())
                 .build();
+    }
+
+    public Set<DifficultyUsers> getDifficultyUsersSet() {
+        return difficultyUsersSet;
+    }
+
+    public void setDifficultyUsersSet(Set<DifficultyUsers> difficultyUsersSet) {
+        this.difficultyUsersSet = difficultyUsersSet;
     }
 
     public Long getId() {

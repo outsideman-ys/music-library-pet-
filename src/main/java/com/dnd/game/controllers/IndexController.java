@@ -1,7 +1,9 @@
 package com.dnd.game.controllers;
 
+import com.dnd.game.dto.SongDTO;
 import com.dnd.game.entities.Song;
 import com.dnd.game.services.SongService;
+import com.dnd.game.services.YoutubeService;
 import org.springframework.boot.Banner;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -23,9 +25,11 @@ import java.util.List;
 public class IndexController {
 
     private final SongService songService;
+    private final YoutubeService youtubeService;
     private final Path fileLocation = Paths.get("src/main/resources/static/tabs/");
 
-    public IndexController(SongService songService) {
+    public IndexController(SongService songService, YoutubeService youtubeService) {
+        this.youtubeService = youtubeService;
         this.songService = songService;
         try {
             Files.createDirectories(this.fileLocation);
@@ -36,8 +40,8 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model) {
-        List<Song> ratingSongs = songService.getRatingForHome();
-        List<Song> dateSongs = songService.getDateForHome();
+        List<SongDTO> ratingSongs = songService.getRatingForHome();
+        List<SongDTO> dateSongs = songService.getDateForHome();
         model.addAttribute("ratingSongs", ratingSongs);
         model.addAttribute("dateSongs", dateSongs);
         return "index";
@@ -53,7 +57,9 @@ public class IndexController {
         } catch (IOException e) {
             throw new RuntimeException("Cant store file");
         }
-        songService.saveSong(song, authentication.getName());
+        String videoId = youtubeService.getVideoYouTube("" + song.getSongName() +
+                " " + song.getBandName() + " lyrics", "AIzaSyBjgbVCoXM00dZytHXVrYnpnkEJTdpqmS4").block();
+        songService.saveSong(song, authentication.getName(), videoId, file.getOriginalFilename());
 
         return "redirect:/";
     }

@@ -1,10 +1,12 @@
 package com.dnd.game.entities;
 
+import com.dnd.game.enums.DifficultyLevel;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 public class Song {
@@ -13,20 +15,27 @@ public class Song {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToMany(mappedBy = "song")
+    Set<DifficultyUsers> userSongs;
+
     @Column(name="song_name")
     private String songName;
+
     @Column(name="band_name")
     private String bandName;
+
     @Column(name="album_name")
     private String albumName;
-    @Column(name="rating")
-    private int rating;
+
+    @Column(name="difficulty")
+    private Integer difficulty;
 
     @Column(name="username")
     private String username;
 
     @Column(name="img_path")
     private String imagePath;
+
     @CreationTimestamp
     @Column(name="created_date")
     private LocalDateTime createdDate;
@@ -34,8 +43,56 @@ public class Song {
     @Column(name="gtrpro_path")
     private String guitarProPath;
 
+    @Column(name="youtube_id")
+    private String youtubeId;
+
+    public Song() {
+    }
+
+    public Song(String songName, String bandName, String albumName, Integer difficulty,
+                String username, String imagePath, LocalDateTime createdDate,
+                String guitarProPath, String youtubeId) {
+        this.songName = songName;
+        this.bandName = bandName;
+        this.albumName = albumName;
+        this.difficulty = difficulty;
+        this.username = username;
+        this.imagePath = imagePath;
+        this.createdDate = createdDate;
+        this.guitarProPath = guitarProPath;
+        this.youtubeId = youtubeId;
+    }
+
+    public Set<DifficultyUsers> getUserSongs() {
+        return userSongs;
+    }
+
+    public void setUserSongs(Set<DifficultyUsers> userSongs) {
+        this.userSongs = userSongs;
+    }
+
+    public String getYoutubeId() {
+        return youtubeId;
+    }
+
+    public void setYoutubeId(String youtubeId) {
+        this.youtubeId = youtubeId;
+    }
+
     public String getUsername() {
         return username;
+    }
+
+    public Integer getDifficulty() {
+        return difficulty;
+    }
+
+    public DifficultyLevel getDifficultyAsString() {
+        return DifficultyLevel.fromLevel(this.difficulty);
+    }
+
+    public void setDifficulty(Integer difficulty) {
+        this.difficulty = difficulty;
     }
 
     public void setUsername(String username) {
@@ -98,11 +155,18 @@ public class Song {
         this.bandName = bandName;
     }
 
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
+    @Override
+    public String toString() {
+        return "Song{" +
+                "id=" + id +
+                ", songName='" + songName + '\'' +
+                ", bandName='" + bandName + '\'' +
+                ", albumName='" + albumName + '\'' +
+                ", difficulty=" + difficulty +
+                ", username='" + username + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                ", guitarProPath='" + guitarProPath + '\'' +
+                ", youtubeId='" + youtubeId + '\'' +
+                '}';
     }
 }

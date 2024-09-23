@@ -56,24 +56,31 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorizeHttpRequests) ->
                         authorizeHttpRequests
                                 .requestMatchers("/fonts/**", "/images/**", "/css/**", "/js/**", "/about", "/all-songs", "/", "/songs/**",
-                                        "/login", "/contact", "/error", "/favicon.ico", "/oauth2/**", "/register")
+                                        "/login", "/contact", "/error", "/favicon.ico", "/oauth2/**", "/register", "/tabs/**")
                                 .permitAll()
-                                .requestMatchers("/account", "/delete-song/**", "/add-new-song").authenticated()
+                                .requestMatchers("/account", "/delete-song/**").authenticated()
                                 .requestMatchers(HttpMethod.POST, "/delete-song/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/all-songs").authenticated()
                                 .anyRequest().denyAll())
-                .oauth2Login(oauth2 -> oauth2
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/account", true))
                 .formLogin(form -> form
                         .loginPage("/login")
+                        .defaultSuccessUrl("/account", true))
+                .oauth2Login(oauth2 -> oauth2
+                        .loginPage("/login")
                         .defaultSuccessUrl("/account", true));
+
         return http.build();
     }
 
     @Bean
     UserDetailsService userService(UserRepo repo) {
-        return username ->
-            repo.findByUsername(username).asUser();
+        return username -> {
+            UserAccount userAccount = repo.findByUsername(username);
+            if (userAccount == null) {
+                System.out.println("User with " + username + " not found");
+            }
+            return userAccount.asUser();
+        };
     }
 
 

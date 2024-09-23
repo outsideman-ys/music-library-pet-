@@ -75,7 +75,7 @@
                 {{#songs}}
                 <a href="/songs/{{id}}"> <div class="song-cell">
                     <img src="{{imagePath}}" alt="{{albumName}} album"
-                         width="200px" height="200px"><br>
+                         onerror="this.onerror=null; this.src='/images/default-image.jpg';" width="200px" height="200px"><br>
                     <b style="font-size:large">{{songName}}</b><br>
                     <u>{{bandName}}</u>
                 </div> </a>

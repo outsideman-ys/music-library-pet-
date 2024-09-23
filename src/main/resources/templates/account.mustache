@@ -23,6 +23,11 @@
         padding-right: 35%;
     }
 
+    .difficulty-table {
+        display: flex;
+        justify-content:center;
+    }
+
 </style>
 
 <body>
@@ -31,8 +36,10 @@
 
     <main>
         <h1 style="text-align:center; padding-top: 40px">HELLO {{user}}</h1>
-
-        {{authority}}
+        {{#account}}
+            <img src="/{{imagePath}}" alt="Profile Photo" height="300px" width="300px"
+                 onerror="this.onerror=null; this.src='/images/account.png';"><br>
+        {{/account}}
 
         <div class="input-container">
             <h2 style="text-align:center">Want to add your song?<br>Fill the form below!</h2>
@@ -45,30 +52,60 @@
                 <input type="text" id="band_name" name="bandName"><br>
                 <label for="fileUpload">Guitar pro file:</label>
                 <input type="file" id="fileUpload" name="guitarProFile" required><br>
-                {{#_csrf}}
+                {{#csrf}}
                 <input type="hidden" name="{{parameterName}}" value="{{token}}">
-                {{/_csrf}}
+                {{/csrf}}
                 <input type="submit"><br><br><br>
             </form>
         </div>
         <div class="delete-container">
         {{#songs}}
             <form action="/delete-song/{{id}}" method="post">
-                ID:{{id}} {{songName}} - {{bandName}} ({{albumName}})
-                {{#_csrf}}
+                <a href="/songs/{{id}}">ID:{{id}} {{songName}} - {{bandName}} ({{albumName}})</a>
+                {{#csrf}}
                     <input type="hidden" name="{{parameterName}}" value="{{token}}">
-                {{/_csrf}}
+                {{/csrf}}
                 <button type="submit" > Delete </button>
             </form>
         {{/songs}}
         </div>
 
+        <table class="difficulty-table">
+            <tr>
+                {{#diffSongs}}<td>
+                    <a href="/songs/{{id}}">
+                        {{songName}}<br>{{bandName}}<br>{{albumName}}
+                    </a>
+                </td>
+                {{/diffSongs}}
+            </tr>
+            <tr>
+                {{#diff}}
+                    <td>
+                        {{difficultyNumb}}/5
+                    </td>
+                {{/diff}}
+            </tr>
+        </table>
+
+        <div class="image-container">
+            <form action="/account" method="post" enctype="multipart/form-data">
+                <label for="fileImageUpload">Profile photo:</label>
+                <input type="file" id="fileImageUpload" name="imageProfile" required><br>>
+                {{#csrf}}
+                    <input type="hidden" name="{{parameterName}}" value="{{token}}">
+                {{/csrf}}
+                <input type="submit">
+            </form>
+        </div>
+
         <div class="logout-container">
             <form action="/logout" method="post">
-                {{#_csrf}}
+                {{#csrf}}
                     <input type="hidden" name="{{parameterName}}" value="{{token}}">
-                {{/_csrf}}
+                {{/csrf}}
                 <button type="submit">Logout</button>
+            </form>
         </div>
 
     </main>
