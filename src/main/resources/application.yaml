@@ -6,9 +6,10 @@ spring:
         username: username
         password: password
         driver-class-name: org.postgresql.Driver
+
     jpa:
         hibernate:
-            ddl-auto: update
+            ddl-auto: none
         show-sql: true
         properties:
             hibernate:
@@ -29,11 +30,7 @@ spring:
         servlet:
             expose-request-attributes: true
 
-    logging:
-        level:
-            org:
-                springframework:
-                    security: DEBUG
+
 
     security:
         oauth2:
@@ -45,3 +42,6 @@ spring:
                         scope: profile,email
                         redirect-uri: "http://localhost:8080/login/oauth2/code/{registrationId}"
                         authorization-grant-type: authorization_code
+app:
+    config:
+        header: Music World

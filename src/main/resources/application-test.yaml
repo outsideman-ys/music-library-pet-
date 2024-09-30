@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: game
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bobworld
+    username: username
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  mvc:
+    servlet:
+      encoding:
+        charset: UTF-8
+        enabled: true
+        force: true
+
+  web:
+    reactive:
+      multipart:
+        enabled: false
+
+  mustache:
+    servlet:
+      expose-request-attributes: true
+
+  logging:
+    level:
+      org:
+        springframework:
+          security: DEBUG
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 801732447302-091hmm4vus670gadmv4scosickupt8s3.apps.googleusercontent.com
+            clientSecret: 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
+            scope: profile,email
+            redirect-uri: "http://localhost:8080/login/oauth2/code/{registrationId}"
+            authorization-grant-type: authorization_code
+app:
+  config:
+    header: Music World
+    users:
+      -
+        username: test1
+        email: test1@gmail.com
+        password: password
+        authorities:
+          - ROLE_USER
+      -
+        username: test2
+        email: test2@gmail.com
+        password: password
+        authorities:
+          - ROLE_ADMIN

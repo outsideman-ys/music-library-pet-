@@ -3,7 +3,11 @@ package com.dnd.game.configs;
 import com.dnd.game.entities.UserAccount;
 import com.dnd.game.repositories.UserManagementRepo;
 import com.dnd.game.repositories.UserRepo;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.fasterxml.jackson.databind.util.Converter;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -48,6 +52,28 @@ public class SecurityConfig {
 //
 //        return clientManager;
 //    }
+
+    @Bean
+    @ConfigurationPropertiesBinding
+    Converter<String, SimpleGrantedAuthority> converter() {
+        return new Converter<String, SimpleGrantedAuthority>() {
+            @Override
+            public SimpleGrantedAuthority convert(String s) {
+                return new SimpleGrantedAuthority(s);
+            }
+
+            @Override
+            public JavaType getInputType(TypeFactory typeFactory) {
+                return null;
+            }
+
+            @Override
+            public JavaType getOutputType(TypeFactory typeFactory) {
+                return null;
+            }
+        };
+    }
+
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {

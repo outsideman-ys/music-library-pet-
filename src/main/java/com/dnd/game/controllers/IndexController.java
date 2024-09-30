@@ -1,5 +1,6 @@
 package com.dnd.game.controllers;
 
+import com.dnd.game.configs.AppConfig;
 import com.dnd.game.dto.SongDTO;
 import com.dnd.game.entities.Song;
 import com.dnd.game.services.SongService;
@@ -27,10 +28,12 @@ public class IndexController {
     private final SongService songService;
     private final YoutubeService youtubeService;
     private final Path fileLocation = Paths.get("src/main/resources/static/tabs/");
+    private final AppConfig appConfig;
 
-    public IndexController(SongService songService, YoutubeService youtubeService) {
+    public IndexController(SongService songService, YoutubeService youtubeService, AppConfig appConfig) {
         this.youtubeService = youtubeService;
         this.songService = songService;
+        this.appConfig = appConfig;
         try {
             Files.createDirectories(this.fileLocation);
         } catch (Exception ex) {
@@ -42,6 +45,8 @@ public class IndexController {
     public String index(Model model) {
         List<SongDTO> ratingSongs = songService.getRatingForHome();
         List<SongDTO> dateSongs = songService.getDateForHome();
+        System.out.println(appConfig.header());
+        model.addAttribute("title", appConfig.header());
         model.addAttribute("ratingSongs", ratingSongs);
         model.addAttribute("dateSongs", dateSongs);
         return "index";
