@@ -9,6 +9,7 @@
         display: flex;
         flex-direction: column;
         min-height: 100vh;
+        background-image: url('images/loginFon.jpg');
     }
 
     main {
@@ -28,6 +29,201 @@
         justify-content:center;
     }
 
+    .song-cell {
+        border-radius: 30px;
+        margin-right: 0px;
+        margin-left: 0px;
+        border-width: 0;
+        border-radius: 0.4em;
+        transition: all 300ms;
+    }
+
+    .song-cell1 {
+        text-align: left;
+        margin-top: 1px;
+        border-radius: 30px;
+        margin-bottom: 10px;
+        margin-right: 0px;
+        margin-left: -500px;
+        border-width: 0;
+        border-radius: 0.4em;
+        transition: all 300ms;
+    }
+
+    .song-cell2 {
+        margin-bottom: 30px;
+        margin-top: 30px;
+        border-radius: 30px;
+        margin-right: 10px;
+        margin-left: 10px;
+        background-color: rgb(209, 207, 207);
+        border-width: 0;
+        border-radius: 0.4em;
+        transition: all 300ms;
+    }
+
+    .song-cell4 {
+        text-align: left;
+        border-radius: 30px;
+        margin-bottom: 10%;
+        margin-right: 600px;
+        margin-left: 600px;
+        background-color: rgb(209, 207, 207);
+        border-width: 0;
+        border-bottom: 4px solid rgb(56, 44, 44);
+        border-right: 4px solid rgb(56, 44, 44);
+        border-top: 4px solid rgb(56, 44, 44);
+        border-left: 4px solid rgb(56, 44, 44);
+        border-radius: 0.4em;
+        transition: all 300ms;
+    }
+
+    .song-cell5 {
+        text-align: center;
+        border-radius: 30px;
+        margin-bottom: 40px;
+        margin-right: 500px;
+        margin-left: 500px;
+        background-color: rgb(209, 207, 207);
+        border-width: 0;
+        border-bottom: 4px solid rgb(56, 44, 44);
+        border-right: 4px solid rgb(56, 44, 44);
+        border-top: 4px solid rgb(56, 44, 44);
+        border-left: 4px solid rgb(56, 44, 44);
+        border-radius: 0.4em;
+        transition: all 300ms;
+    }
+
+    .song-cell6 {
+        text-align: center;
+        border-radius: 30px;
+        margin-bottom: 20px;
+        margin-right: 654px;
+        margin-left: 103px;
+        margin-top: 20px;
+        background-color: rgb(209, 207, 207);
+        border-width: 0;
+        border-bottom: 4px solid rgb(56, 44, 44);
+        border-right: 4px solid rgb(56, 44, 44);
+        border-top: 4px solid rgb(56, 44, 44);
+        border-left: 4px solid rgb(56, 44, 44);
+        border-radius: 0.4em;
+        transition: all 300ms;
+    }
+
+    .song-cell7 {
+        margin-bottom: 30px;
+        margin-top: 30px;
+        border-radius: 30px;
+        margin-right: 550px;
+        margin-left: 0px;
+        background-color: rgb(209, 207, 207);
+        border-width: 0;
+        border-radius: 0.4em;
+        transition: all 300ms;
+    }
+
+
+
+    :root{
+            --hoverButtonColor: 0.5;
+        }
+
+        .btn {
+            padding: 0.5em 1.5em;
+            font-size: 0.9em;
+            color: #fff;
+            background-color: rgba(107, 195, 242, 1);
+            border-width: 0;
+            border-bottom: 4px solid #547b80;
+            border-radius: 0.4em;
+            cursor: pointer;
+            transition: all 300ms;
+        }
+
+        .btn:hover{
+            opacity: var(--hoverButtonColor);
+            color:black;
+        }
+
+    p1 {
+        font-size: 17px;
+    }
+
+    .header-h1{
+        position: relative;
+        margin-bottom: .5rem;
+    }
+
+    .header-h1::before {
+        content: "";
+        position: absolute;
+        border-top: 2px solid #000000;
+        border-bottom: 2px solid #000000;
+        height: .375rem;
+        right: 50%;
+        top: 50%;
+        width: 31%;
+        transform: translateY(-50%);
+        z-index: -999;
+    }
+
+    .header-h1::after {
+        content: "";
+        position: absolute;
+        border-top: 2px solid #000000;
+        border-bottom: 2px solid #000000;
+        height: .375rem;
+        left: 50%;
+        top: 50%;
+        width: 31%;
+        transform: translateY(-50%);
+        z-index: -999;
+    }
+
+    .header-h1 h1 {
+        font-size: 1.5rem;
+        color: #000000;
+        display: inline-block;
+        background: rgb(209, 207, 207);
+        margin-bottom: 0;
+        padding-right: 1rem;
+        text-transform: uppercase;
+    }
+
+    .header-h1-center {
+        text-align: center;
+    }
+
+    .header-h1-center h1 {
+        padding-left: 1rem;
+    }
+
+
+
+
+
+   th {
+    background: rgba(107, 195, 242, 1);
+    color: #000000;
+   }
+   td {
+    text-align: center;
+
+
+   }
+   td, th {
+    padding: 5px 10px;
+    vertical-align: top;
+   }
+
+
+   table {
+
+width: 100%;
+
+}
+
 </style>
 
 <body>
@@ -35,78 +231,116 @@
 {{>header}}
 
     <main>
-        <h1 style="text-align:center; padding-top: 40px">HELLO {{user}}</h1>
-        {{#account}}
-            <img src="/{{imagePath}}" alt="Profile Photo" height="300px" width="300px"
-                 onerror="this.onerror=null; this.src='/images/account.png';"><br>
-        {{/account}}
+        <h1 style="text-align:center; padding-top: 100px"><div class="header-h1 header-h1-center">
+            <h1>HELLO {{user}}</h1>
+        </div></h1>
 
-        <div class="input-container">
-            <h2 style="text-align:center">Want to add your song?<br>Fill the form below!</h2>
-            <form action="/all-songs" method="post" enctype="multipart/form-data">
-                <label for="song_name">Song name:</label>
-                <input type="text" id="song_name" name="songName"><br>
-                <label for="album_name">Album name:</label>
-                <input type="text" id="album_name" name="albumName"><br>
-                <label for="band_name">Band name:</label>
-                <input type="text" id="band_name" name="bandName"><br>
-                <label for="fileUpload">Guitar pro file:</label>
-                <input type="file" id="fileUpload" name="guitarProFile" required><br>
-                {{#csrf}}
-                <input type="hidden" name="{{parameterName}}" value="{{token}}">
-                {{/csrf}}
-                <input type="submit"><br><br><br>
-            </form>
+        <h1 style="text-align:center; padding-top: 10px"><div class="header-h1 header-h1-center">
+            <h1>Want to add your song?<br>Fill the form below!</h1>
         </div>
-        <div class="delete-container">
+        </h1>
+
+        <div class="song-cell5">
+        <table>
+            <td>
+                <div class="song-cell6">
+                    {{#account}}
+                        <img src="/{{imagePath}}" alt="Profile Photo" height="300px" width="300px"
+                             onerror="this.onerror=null; this.src='/images/account.png';"><br>
+                    {{/account}}
+                </div>
+
+                <div class="song-cell7">
+                    <div class="image-container">
+                        <form action="/account" method="post" enctype="multipart/form-data">
+                            <label for="fileImageUpload">Profile photo:</label>
+                            <input type="file" id="fileImageUpload" name="imageProfile" required><br>>
+                            {{#csrf}}
+                                <input type="hidden" name="{{parameterName}}" value="{{token}}">
+                            {{/csrf}}
+                            <input type="submit" class="btn">
+                        </form>
+                        <div class="logout-container">
+                            <form action="/logout" method="post">
+                                {{#csrf}}
+                                    <input type="hidden" name="{{parameterName}}" value="{{token}}">
+                                {{/csrf}}
+                                <button type="submit">Logout</button>
+                            </form>
+                        </div>
+                    </div></div>
+                </td>
+            <td>
+                <div class="input-container">
+
+                    <div class="song-cell"><div class="song-cell1">
+                    <form action="/all-songs" method="post" enctype="multipart/form-data">
+                        <label for="song_name">Song name:</label>
+                        <input type="text" id="song_name" name="songName"><br>
+                        <label for="album_name">Album name:</label>
+                        <input type="text" id="album_name" name="albumName"><br>
+                        <label for="band_name">Band name:</label>
+                        <input type="text" id="band_name" name="bandName"><br>
+                        <label for="fileUpload">Guitar pro file:</label>
+                        <input type="file" id="fileUpload" name="guitarProFile" required><br>
+                        {{#csrf}}
+                            <input type="hidden" name="{{parameterName}}" value="{{token}}">
+                        {{/csrf}}
+                        <input type="submit" class="btn"><br><br><br>
+                    </form>
+                </div></div></div>
+            </td>
+        </table>
+        </div>
+
+
+
+
+
+
+
+        <table class="difficulty-table">
+            <tbody><tr>
+                <th>SONG</th><th>GROUP</th><th>ALBUM</th><th>GRADE</th>
+            </tr>
+            <tr>
+                {{#diffSongs}}{{#diff}}<td>
+                    <a href="/songs/{{id}}">
+                        {{songName}}
+                    </a>
+                </td>
+                <td>
+                    {{bandName}}
+                </td>
+                <td>
+                    {{albumName}}
+                </td>
+                    <td>{{difficultyNumb}}/5</td>
+                </tr>
+                {{/diff}}{{/diffSongs}}
+            </tbody></table>
+
+
+        <h1 style="text-align:center; padding-top: 10px"><div class="header-h1 header-h1-center">
+            <h1>List of songs</h1>
+        </div>
+        </h1>
+
+        <div class="delete-container"><div class="song-cell4"><div class="song-cell2"><p1>
         {{#songs}}
             <form action="/delete-song/{{id}}" method="post">
                 <a href="/songs/{{id}}">ID:{{id}} {{songName}} - {{bandName}} ({{albumName}})</a>
                 {{#csrf}}
                     <input type="hidden" name="{{parameterName}}" value="{{token}}">
                 {{/csrf}}
-                <button type="submit" > Delete </button>
+                <button type="submit"  class="btn"> Delete </button>
             </form>
         {{/songs}}
-        </div>
+        </p1></div></div></div>
 
-        <table class="difficulty-table">
-            <tr>
-                {{#diffSongs}}<td>
-                    <a href="/songs/{{id}}">
-                        {{songName}}<br>{{bandName}}<br>{{albumName}}
-                    </a>
-                </td>
-                {{/diffSongs}}
-            </tr>
-            <tr>
-                {{#diff}}
-                    <td>
-                        {{difficultyNumb}}/5
-                    </td>
-                {{/diff}}
-            </tr>
-        </table>
 
-        <div class="image-container">
-            <form action="/account" method="post" enctype="multipart/form-data">
-                <label for="fileImageUpload">Profile photo:</label>
-                <input type="file" id="fileImageUpload" name="imageProfile" required><br>>
-                {{#csrf}}
-                    <input type="hidden" name="{{parameterName}}" value="{{token}}">
-                {{/csrf}}
-                <input type="submit">
-            </form>
-        </div>
 
-        <div class="logout-container">
-            <form action="/logout" method="post">
-                {{#csrf}}
-                    <input type="hidden" name="{{parameterName}}" value="{{token}}">
-                {{/csrf}}
-                <button type="submit">Logout</button>
-            </form>
-        </div>
+
 
     </main>
 

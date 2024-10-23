@@ -40,7 +40,7 @@ spring:
                         clientId: 801732447302-091hmm4vus670gadmv4scosickupt8s3.apps.googleusercontent.com
                         clientSecret: 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
                         scope: profile,email
-                        redirect-uri: "http://localhost:8080/login/oauth2/code/{registrationId}"
+                        redirect-uri: "http://localhost:9000/login/oauth2/code/{registrationId}"
                         authorization-grant-type: authorization_code
 app:
     config:

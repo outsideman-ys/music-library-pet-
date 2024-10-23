@@ -7,22 +7,41 @@
 
     body {
         background-color: gray;
+        background-image: url('images/loginFon.jpg');
     }
 
     .song-container {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         justify-content: center;
-        padding-right: 10%;
-        padding-left: 10%;
+        padding-right: 20%;
+        padding-left: 20%;
         padding-bottom: 5%;
     }
 
+    :root{
+            --hoverButtonColor: 0.5;
+        }
+
     .song-cell {
         text-align: center;
-        margin: 10px;
+        border-radius: 15px;
         padding: 10px;
-        background-color: white;
+        margin-right: 10px;
+        margin-left: 10px;
+        background-color: rgb(209, 207, 207);
+        border-width: 0;
+        border-bottom: 4px solid rgb(56, 44, 44);
+        border-right: 4px solid rgb(56, 44, 44);
+        border-radius: 0.4em;
+        transition: all 300ms;
+    }
+
+    .song-cell:hover{
+        background-color: rgb(160, 160, 160);
+        border-bottom: 4px solid rgba(0, 0, 0, 0);
+        border-right: 4px solid rgba(0, 0, 0, 0);
+        transform: scale(1.1);
     }
 
     main {
@@ -41,6 +60,34 @@
         cursor: not-allowed;
     }
 
+    .btn {
+            padding: 0.5em 1.5em;
+            font-size: 0.9em;
+            color: #000000;
+            background-color: rgba(107, 195, 242, 1);
+            border-width: 0;
+            border-radius: 0.4em;
+            cursor: pointer;
+            transition: all 300ms;
+        }
+
+        .btn:hover{
+            opacity: var(--hoverButtonColor);
+            color:black;
+        }
+
+
+        .btn1 {
+            padding: 0.5em 1.5em;
+            font-size: 0.9em;
+            color: #000000;
+            background-color: rgb(209, 207, 207);
+            border-width: 0;
+            border-radius: 0.4em;
+            cursor: pointer;
+            transition: all 300ms;
+        }
+
 </style>
 
 <body>
@@ -51,16 +98,16 @@
             <div class="search-control" style="text-align:center">
                 <form action="/all-songs" method="get">
                     <label for="search">Search: </label>
-                    <input type="text" value="{{search}}" name="search">
-                    <input type="submit" value="Search"><br>
+                    <input type="text" value="{{search}}" name="search" class="btn1">
+                    <input type="submit" value="Search" class="btn"><br>
                     <label for="sort-for">Sort: </label>
-                    <select id="sort-for" name="sortField">
+                    <select id="sort-for" name="sortField" class="btn1">
                         {{#sortFieldOptions}}
                             <option value="{{value}}" {{#selected}}selected{{/selected}}>{{label}}</option>
                         {{/sortFieldOptions}}
                     </select>
                     <label for="sort-how">How to sort: </label>
-                    <select id="sort-how" name="sortOrder">
+                    <select id="sort-how" name="sortOrder" class="btn1">
                         {{#sortOrderOptions}}
                             <option value="{{value}}" {{#selected}}selected{{/selected}}>{{label}}</option>
                         {{/sortOrderOptions}}
@@ -68,10 +115,10 @@
                     {{#_csrf}}
                     <input type="hidden" name="{{parameterName}}" value="{{token}}">
                     {{/_csrf}}
-                    <input type="submit" value="Sort">
+                    <input type="submit" value="Sort" class="btn">
                 </form>
             </div>
-            <div class="song-container">
+            <div class="song-container" style="padding-top: 50px;">
                 {{#songs}}
                 <a href="/songs/{{id}}"> <div class="song-cell">
                     <img src="{{imagePath}}" alt="{{albumName}} album"

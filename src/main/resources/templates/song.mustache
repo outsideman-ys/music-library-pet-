@@ -61,6 +61,264 @@
         justify-content:center;
     }
 
+    body {
+        background-color: gray;
+        background-image: url('/images/loginFon.jpg');
+    }
+
+    .five {
+        padding: 50px 20px 50px 300px;
+        text-align:left;
+    }
+
+    .five h1 {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
+        position: relative;
+        color: #000000;
+        font-size: 2.5em;
+        font-weight: normal;
+        display: inline-block;
+        margin: 0;
+        line-height: 1;
+        padding: 8px 20px 8px 2px;
+        border-top: 4px solid;
+    }
+
+    .five h1:before {
+        content: "Song Name";
+        position: absolute;
+        top: 40px;
+        left: -250px;
+        font-size: 1em;
+        transform: rotate(-30deg);
+        font-family: 'Marck Script', cursive;
+    }
+
+    .five h1:after {
+        content: "";
+        position: absolute;
+        width: 120%;
+        height: 4px;
+        right: 0;
+        bottom: -4px;
+        background: #000000;
+    }
+
+
+    .five h2 {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
+        position: relative;
+        color: #000000;
+        font-size: 2.5em;
+        font-weight: normal;
+        display: inline-block;
+        margin: 0;
+        line-height: 1;
+        padding: 8px 20px 8px 2px;
+        border-top: 4px solid;
+    }
+
+    .five h2:before {
+        content: "Band Name";
+        position: absolute;
+        top: 40px;
+        left: -250px;
+        font-size: 1em;
+        transform: rotate(-30deg);
+        font-family: 'Marck Script', cursive;
+    }
+
+    .five h2:after {
+        content: "";
+        position: absolute;
+        width: 120%;
+        height: 4px;
+        right: 0;
+        bottom: -4px;
+        background: #000000;
+    }
+
+
+
+    .five h3 {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
+        position: relative;
+        color: #000000;
+        font-size: 2.5em;
+        font-weight: normal;
+        display: inline-block;
+        margin: 0;
+        line-height: 1;
+        padding: 8px 20px 8px 2px;
+        border-top: 4px solid;
+    }
+
+    .five h3:before {
+        content: "Difficulty";
+        position: absolute;
+        top: 40px;
+        left: -250px;
+        font-size: 1em;
+        transform: rotate(-30deg);
+        font-family: 'Marck Script', cursive;
+    }
+
+    .five h3:after {
+        content: "";
+        position: absolute;
+        width: 120%;
+        height: 4px;
+        right: 0;
+        bottom: -4px;
+        background: #000000;
+    }
+
+
+    .song-cell {
+        text-align: center;
+        border-radius: 30px;
+        padding-bottom: 30px;
+        margin-right: 600px;
+        margin-left: 600px;
+        background-color: rgb(209, 207, 207);
+        border-width: 0;
+        border-bottom: 4px solid rgb(56, 44, 44);
+        border-right: 4px solid rgb(56, 44, 44);
+        border-top: 4px solid rgb(56, 44, 44);
+        border-left: 4px solid rgb(56, 44, 44);
+        border-radius: 0.4em;
+        transition: all 300ms;
+    }
+
+    .song-cell1 {
+        text-align: center;
+        border-radius: 30px;
+        padding-bottom: 30px;
+        padding-top: 30px;
+        margin-right: 350px;
+        margin-left: 350px;
+        background-color: rgb(209, 207, 207);
+        border-width: 0;
+        border-bottom: 4px solid rgb(56, 44, 44);
+        border-right: 4px solid rgb(56, 44, 44);
+        border-top: 4px solid rgb(56, 44, 44);
+        border-left: 4px solid rgb(56, 44, 44);
+        border-radius: 0.4em;
+        transition: all 300ms;
+    }
+
+    .song-cell2 {
+        text-align: center;
+        border-radius: 30px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-right: 10px;
+        margin-left: 10px;
+        background-color: rgb(255, 255, 255);
+        border-width: 0;
+        border-bottom: 4px solid rgb(56, 44, 44);
+        border-right: 4px solid rgb(56, 44, 44);
+        border-top: 4px solid rgb(56, 44, 44);
+        border-left: 4px solid rgb(56, 44, 44);
+        border-radius: 0.4em;
+        transition: all 300ms;
+    }
+
+
+
+    .song-container {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        justify-content: center;
+        padding-right: 20%;
+        padding-left: 20%;
+        padding-bottom: -100px;
+    }
+
+    p1 {
+        font-size: 20px;
+    }
+
+
+    .header-h1{
+        position: relative;
+        margin-bottom: .5rem;
+    }
+
+    .header-h1::before {
+        content: "";
+        position: absolute;
+        border-top: 2px solid #000000;
+        border-bottom: 2px solid #000000;
+        height: .375rem;
+        right: 50%;
+        top: 50%;
+        width: 31%;
+        transform: translateY(-50%);
+        z-index: -999;
+    }
+
+    .header-h1::after {
+        content: "";
+        position: absolute;
+        border-top: 2px solid #000000;
+        border-bottom: 2px solid #000000;
+        height: .375rem;
+        left: 50%;
+        top: 50%;
+        width: 31%;
+        transform: translateY(-50%);
+        z-index: -999;
+    }
+
+    .header-h1 h1 {
+        font-size: 1.5rem;
+        color: #000000;
+        display: inline-block;
+        background: rgb(209, 207, 207);
+        margin-bottom: 0;
+        padding-right: 1rem;
+        text-transform: uppercase;
+    }
+
+    .header-h1-center {
+        text-align: center;
+    }
+
+    .header-h1-center h1 {
+        padding-left: 1rem;
+    }
+
+    :root{
+        --hoverButtonColor: 0.5;
+    }
+
+    .btn {
+        padding: 0.5em 1.5em;
+        font-size: 0.9em;
+        color: #000000;
+        background-color: rgba(107, 195, 242, 1);
+        border-width: 0;
+        border-radius: 0.4em;
+        cursor: pointer;
+        transition: all 300ms;
+    }
+
+    .btn:hover{
+        opacity: var(--hoverButtonColor);
+        color:black;
+    }
+
+    td {
+        text-align: center;
+        vertical-align: middle;
+     }
+
 </style>
 
 
@@ -90,21 +348,45 @@
 
     <main style="padding-top: 50px">
         {{#song}}
-            <p id="song_name">Song Name: {{songName}}</p>
-            <p id="band_name">Band Name: {{bandName}}</p>
-            <p id="difficulty_name">Difficulty: {{difficulty}}</p>
-            <img src="/{{imagePath}}" alt="{{albumName}} album" onerror="this.onerror=null; this.src='/images/default-image.jpg';" width="200px" height="200px">
-            <a href="/{{guitarProPath}}" download>Click here to download guitar pro file of song</a>
+        <div class="song-cell1">
+            <table>
+                <tr>
+                    <td>
+                        <div class="text-block1">
+                            <div class="five"><h1><p id="song_name">Song Name: {{songName}}</p></h1></div>
+                            <div class="five"><h2><p id="band_name">Band Name: {{bandName}}</p></h2></div>
+                            <div class="five"><h3><p id="difficulty_name">Difficulty: {{difficulty}}</p></h3></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="song-cell2"><div class="song-container">
+                            <img src="/{{imagePath}}" alt="{{albumName}} album"
+                                 onerror="this.onerror=null; this.src='/images/default-image.jpg';"
+                                 width="400px" height="400px" align="center" vspace="5" hspace="5">
+                        </div></div>
+                        <br><br><a href="/{{guitarProPath}}" download class="btn">
+                        Download gp file</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
-        <pre id="lyrics"></pre>
+            <div class="text-block"><div class="song-cell">
+                <p1><pre id="lyrics"></pre></p1>
+            </div></div>
 
-            <h2>Watch the video:</h2>
+            <h1 style="text-align:center; padding-top: 100px"><div class="header-h1 header-h1-center">
+                <h1>Watch the video:</h1>
+            </div>
+            </h1>
+
             <iframe width="560" height="315" src="https://www.youtube.com/embed/{{youtubeId}}"
                     title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen></iframe>
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""
+                    style="display: block; margin: auto;"></iframe>
         {{/song}}
+
 
         <h2 style="text-align:center; padding-top: 1%;">RATE DIFFICULTY OF THIS SONG!</h2>
 
@@ -126,7 +408,7 @@
                 <input type="radio" id="beginner" name="difficulty" value="1" />
                 <label for="beginner" title="Beginner"></label>
             </div>
-            <input type="submit" value="Rate" id="submit-difficulty">
+            <input type="submit" value="Rate" id="submit-difficulty" class="btn" style="display: block; margin: auto;">
         </form>
 
         <div id="difficulty-hint"></div>
